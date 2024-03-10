@@ -1,113 +1,376 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React, { useState } from "react";
+import Papa from "papaparse";
+import { Button, Text, FileButton, Code, Title } from "@mantine/core";
+import { KamokuTani } from "../app/components/KamokuTani";
+
+export default function CSVUpload() {
+  const [data, setData] = useState<unknown[]>([]);
+  const handleFileUpload = (file: File) => {
+    Papa.parse(file, {
+      header: true,
+      download: true,
+      skipEmptyLines: true,
+      complete: (results) => {
+        setData(results.data);
+      },
+    });
+  };
+
+  console.log(data);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    <>
+      <FileButton
+        accept=".csv"
+        onChange={(file: File | null) => handleFileUpload(file as File)}
+      >
+        {(props) => <Button {...props}>成績表（.csv）をアップロード</Button>}
+      </FileButton>
+      {data && (
+        <>
+          <KamokuTani
+            kamoku={"総単位数"}
+            needTani={124}
+            data={data}
+            kamokuNo={/.*/}
+          ></KamokuTani>
+          <Title order={2}>専門科目</Title>
+          <Title order={3}>必修科目</Title>
+          <KamokuTani
+            kamoku={"専門語学（英語）B1"}
+            needTani={1}
+            data={data}
+            kamokuNo={/EB13612|EB13012/}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"専門語学（英語）B2"}
+            needTani={1}
+            data={data}
+            kamokuNo={/EB13622|EB13022/}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"専門語学（英語）B3"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"科学コミュニケーション"}
+            needTani={2}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"専門語学（英語）D1"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"専門語学（英語）D2"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"専門語学（英語）D3"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"生物学演習"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"生物学研究法"}
+            needTani={6}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"卒業研究"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"論文作成・プレゼンテーション"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <Title order={3}>選択科目</Title>
+          <KamokuTani
+            kamoku={
+              <>
+                科目番号がEB15からEB99で始まる科目
+                <br />
+                生物物理科学
+                <br />
+                科目番号がEC2(EC24を除く)，EC3(EC34を除く)，EE(EE21，EE5を除く)，EG5，EG6，EG9，FA，FC，FE，FF4，FF5，FG12，FG22，FG32，FG4，FG52，G，HB，HEで始まる科目のうちから学類長が指定するもの
+                <br />
+                その他学類長が専門科目選択として特に指定する科目
+              </>
+            }
+            needTani={40}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"所属するコースに対応して指定された科目"}
+            needTani={8}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"所属するコースに対応して指定された科目以外の科目"}
+            needTani={8}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <Title order={2}>専門基礎科目</Title>
+          <Title order={3}>必修科目</Title>
+          <KamokuTani
+            kamoku={"系統分類・進化学概論"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"遺伝学概論"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"生態学概論"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"動物生理学概論"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"植物生理学概論"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"基礎生物学実験"}
+            needTani={3}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"専門語学（英語）A1"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"専門語学（英語）A2"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={"クラスセミナー"}
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <Title order={3}>選択科目</Title>
+          <KamokuTani
+            kamoku={
+              <>
+                分子細胞生物学概論
+                <br />
+                Introduction to Biology 1
+              </>
+            }
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <Title order={2}>基礎科目</Title>
+          <Title order={3}>必修科目</Title>
+          <KamokuTani
+            kamoku={<>総合科目（フレッシュマン・セミナー，学問への誘い）</>}
+            needTani={2}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={<>外国語</>}
+            needTani={4}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={<>情報</>}
+            needTani={4}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <Title order={3}>選択科目</Title>
+          <KamokuTani
+            kamoku={
+              <>総合科目（フレッシュマン・セミナー，学問への誘いを除く）</>
+            }
+            needTani={1}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={<>体育</>}
+            needTani={2}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={
+              <>
+                外国語
+                <br />
+                博物館に関する科目
+                <br />
+                教職に関する科目（現代教育と教育理念，教育史概論，こころの発達，学習の心理，教育指導法（理科）に関する科目に限る）
+              </>
+            }
+            needTani={0}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={
+              <>
+                数学リテラシー1，2，3
+                <br />
+                科目番号がEC12，EE1，FA，FB，FC，FE，FF，FG，G，HB，HEで始まる科目（EA，EBと共通開設のもの，専門科目として指定されているものならびに学類長が指定するものを除く）
+                <br />
+                その他学類長が「関連科目A」として特に指定するもの
+              </>
+            }
+            needTani={9}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={
+              <>
+                微積分1及び2（理工学群），微積分学A（情報科学類），Calculus
+                1，Calculus A，Mathematics及びAdvanced
+                Mathmatics，または「微積分」相当科目として学類長が指定する科目
+              </>
+            }
+            needTani={0}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={
+              <>
+                線形代数1及び2（理工学群），線形代数A（情報科学類），Linear
+                Algebra 1，または「線形代数」相当科目として学類長が指定する科目
+              </>
+            }
+            needTani={0}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={<>物理学序説，物理学概論またはPhysics</>}
+            needTani={0}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={<>化学序説または化学概論</>}
+            needTani={0}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={<>地学序説，地球環境学1，地球進化学1，2</>}
+            needTani={0}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={<>力学1，2，3またはMechanics 1，2</>}
+            needTani={0}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={<>電磁気学1，2，3またはElectromagnetism 1</>}
+            needTani={0}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={<>化学1，2，3またはChemistry 1，2，3</>}
+            needTani={0}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={
+              <>
+                プログラミング入門または
+                <br />
+                Programming 1，2（総合理工）
+              </>
+            }
+            needTani={0}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={
+              <>
+                Thermodynamics 1，2
+                <br />
+                物理学実験
+                <br />
+                化学実験
+                <br />
+                地球学実験
+                <br />
+                Statistics
+              </>
+            }
+            needTani={0}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+          <KamokuTani
+            kamoku={
+              <>
+                生物資源の開発・生産と持続利用，生物資源としての遺伝子とゲノム，生物資源と環境，生物資源学にみる食品科学・技術の最前線
+                <br />
+                科目番号がA，B，C，EC24，EC34，EC4，EE21，FH，HC，Yで始まる科目（EA，EBと共通開設のもの，専門科目として指定されているものならびに学類長が指定するものを除く）
+                <br />
+                その他学類長が「関連科目B」として特に指定するもの
+              </>
+            }
+            needTani={6}
+            data={data}
+            kamokuNo={""}
+          ></KamokuTani>
+        </>
+      )}
+      <Code block>{JSON.stringify(data, null, 2)}</Code>
+    </>
   );
 }

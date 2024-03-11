@@ -2,7 +2,7 @@
 import { ReactNode } from "react";
 import { Text, Box, Group, Divider } from "@mantine/core";
 
-export function KamokuTani({
+export function KamokuMeiTani({
   kamoku,
   data,
   needTani,
@@ -21,10 +21,10 @@ export function KamokuTani({
       data[i]["総合評価"] !== "履修中" &&
       data[i]["総合評価"] !== "F" &&
       data[i]["総合評価"] !== "D" &&
-      regex.test(data[i]["科目番号"])
+      regex.test(data[i]["科目名 "])
     ) {
       countTani += parseFloat(data[i]["単位数"]);
-      console.log(data[i]["科目名 "], data[i]["科目番号"], countTani);
+      console.log(data[i]["科目名 "]);
     }
   }
 

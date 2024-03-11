@@ -5,8 +5,8 @@ import "@mantine/core/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 
 export const metadata = {
-  title: "My Mantine app",
-  description: "I have followed setup instructions carefully",
+  title: "biol卒業要件チェッカー",
+  description: "生物学類21生の卒業要件をチェックします。",
 };
 
 export default function RootLayout({

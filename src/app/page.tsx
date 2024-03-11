@@ -18,6 +18,7 @@ import { KamokuMeiTani } from "../app/components/KamokuMeiTani";
 import { Header } from "../app/components/Header";
 import { useDisclosure } from "@mantine/hooks";
 import { InfoToUse } from "./components/InfoToUse";
+import { Footer } from "./components/Footer";
 
 export default function CSVUpload() {
   const [data, setData] = useState<unknown[]>([]);
@@ -465,6 +466,7 @@ export default function CSVUpload() {
           </>
         )}
       </Box>
+      <Footer />
     </Box>
   );
 }

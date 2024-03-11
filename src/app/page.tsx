@@ -38,9 +38,9 @@ export default function CSVUpload() {
   return (
     <Box bg={"RGB( 255 , 248 , 255 )"}>
       <Header />
-      <Box maw={"900px"} m={"auto"} p={"4%"}>
+      <Box maw={"900px"} m={"auto"} p={"20px 4%"}>
         <InfoToUse />
-        <Center mb={"50px"}>
+        <Center mb={"30px"}>
           <FileButton
             accept=".csv"
             onChange={(file: File | null) => handleFileUpload(file as File)}

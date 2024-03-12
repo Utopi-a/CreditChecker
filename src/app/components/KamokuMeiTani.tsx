@@ -24,7 +24,7 @@ export function KamokuMeiTani({
       regex.test(data[i]["科目名 "])
     ) {
       countTani += parseFloat(data[i]["単位数"]);
-      console.log(data[i]["科目名 "]);
+      console.log(data[i]["科目名 "], data[i]["科目番号"], countTani);
     }
   }
 

@@ -187,7 +187,9 @@ export default function CSVUpload() {
               kamoku={"人間生物コース"}
               needTani={8}
               data={data}
-              kamokuNo={/^EB9[0-9].*|^EB72111|^EB72121|^EB72166|^EB72176/}
+              kamokuNo={
+                /^EB9[0-9].*|^EB72111|^EB72121|^EB72166|^EB72176|^EB72173|^EB72163/
+              }
             ></KamokuTani>
             <KamokuTani
               kamoku={"GloBEコース"}

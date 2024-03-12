@@ -126,7 +126,7 @@ export default function CSVUpload() {
             ></KamokuTani>
             <KamokuTani
               kamoku={"卒業研究"}
-              needTani={1}
+              needTani={6}
               data={data}
               kamokuNo={/^EB14908|^EB14978/}
             ></KamokuTani>

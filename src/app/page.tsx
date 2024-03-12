@@ -94,7 +94,7 @@ export default function CSVUpload() {
               kamoku={"科学コミュニケーション"}
               needTani={2}
               data={data}
-              kamokuNo={/^EB132../}
+              kamokuNo={/^EB13[127]../}
             ></KamokuTani>
             <KamokuTani
               kamoku={"専門語学（英語）D1"}

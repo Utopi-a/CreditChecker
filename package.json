@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@mantine/core": "^7.5.2",
@@ -14,6 +15,7 @@
     "@types/papaparse": "^5.3.14",
     "csvtojson": "^2.0.10",
     "next": "14.1.0",
+    "next-sitemap": "^4.2.3",
     "react": "^18",
     "react-dom": "^18",
     "react-papaparse": "^4.4.0"

@@ -7,6 +7,9 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 export const metadata = {
   title: "biol卒業要件チェッカー",
   description: "生物学類21生の卒業要件をチェックします。",
+  verifications: {
+    google: "N5JMnFawDNN9TauzDT001AFITWHtZRVlK8LafpEniJ0",
+  },
 };
 
 export default function RootLayout({

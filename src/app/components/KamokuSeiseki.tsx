@@ -10,11 +10,12 @@ export function KamokuSeiseki({
   seiseki: string;
 }) {
   let countTani = 0;
+  let countKamoku = 0;
+
   for (let i = 0; i < data.length; i++) {
-    console.log(data[i]["総合評価"]);
-    console.log(countTani);
     if (data[i]["総合評価"] == seiseki) {
       countTani += parseFloat(data[i]["単位数"]);
+      countKamoku += 1;
       console.log(data[i]["科目名 "], data[i]["科目番号"], countTani);
     }
   }
@@ -46,7 +47,8 @@ export function KamokuSeiseki({
           size="25px"
           m={"10px"}
         >
-          {countTani}
+          {countTani}単位{" / "}
+          {countKamoku}科目
         </Text>
       </Group>
       <Divider />

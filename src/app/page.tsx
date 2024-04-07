@@ -475,7 +475,7 @@ export default function CSVUpload() {
               }
             />
             <Title c={"RGB( 61 , 0 , 0 )"} order={2}>
-              成績ごとの修得済み単位数
+              成績ごとの修得済み単位数/科目数
             </Title>
             <KamokuSeiseki data={data} seiseki={"A+"} />
             <KamokuSeiseki data={data} seiseki={"A"} />
